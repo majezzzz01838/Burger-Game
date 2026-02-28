@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Математический квест</title>
     <link rel="stylesheet" href="designnn.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body>    
@@ -209,6 +210,12 @@ function backToStart() {
     document.getElementById("Lose").style.display = "none";
     document.getElementById("Win").style.display = "none";
     document.getElementById("Start").style.display = "block";
+
+    const inputs = 
+    document.querySelectorAll(".answer");
+    inputs.forEach(input => {
+        input.value = "";
+    });
 }
 
 </script>
