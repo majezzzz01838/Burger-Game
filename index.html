@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Математический квест</title>
+    <link rel="stylesheet" href="designnn.css">
+</head>
+
+<body>    
+
+<div id="Start">
+
+    <h1 class="starttitle">Бургер</h1>
+    <h2 class="subtitle">Математическая мини-игра</h2>
+
+    <div class="content">
+    
+        <div class="left">
+            <img src="peachstart.png" alt="Тут должна быть кошечка..." class="peach1">
+            <button onclick="gameStart()" class="play-button">Играть</button>
+        </div>
+        
+        <div class="right">
+            <h3>Правила игры:</h3>
+            <p>
+                Вам даны продукты, рядом с которыми – функции.
+                К каждой функции нужно найти производную.
+                При правильных ответах продукты в конце сложатся в бургер.
+           </p>
+            <h2>Удачи Вам!</h2>
+        </div>
+    <p class="footer-left">От majezzzz (2026 г.)</p>
+    <p class="footer-right">Просто эксперимент ;)</p>
+    </div> 
+     
+</div>
+
+<!-- ВЫШЕ — СТАРТОВЫЙ ЭКРАН -->
+
+<div id="Game" style="display:none;">
+    
+  <div class="game-layout">
+      
+   <div class="column column-left">
+    <div class="item">
+      <img src="tomato.png" alt="Тут задуман помидор...">
+      <input type="text" class="answer"
+      data-correct="-sinx">
+      <p class="function">cos x</p>
+    </div>
+
+   <div class="item">
+      <img src="bun1.png" alt="Тут задумана булка...">
+      <input type="text" class="answer"
+      data-correct="48x^2">
+      <p class="function">16x^3</p>
+   </div>
+    
+   <div class="item">
+      <img src="cheese.png" alt="Тут задуман сыр...">
+      <input type="text" class="answer"
+      data-correct="1/x">
+      <p class="function">ln x</p>
+    </div>
+   </div>
+   
+   <div class="rules-center">
+    <img src="rules.png" alt="Тут задуманы правила...">
+    <button onclick="checkAnswers()" class="check-button">Проверить</button>
+   </div>
+   
+   <div class="column column-right">
+    <div class="item">
+      <img src="lettuce.png" alt="Тут задуман салат...">
+      <input type="text" class="answer"
+      data-correct="1/cos^2x">
+      <p class="function">tg x</p>
+    </div>
+    
+    <div class="item">
+      <img src="cutlet.png" alt="Тут задумана котлета...">
+      <input type="text" class="answer"
+      data-correct="1">
+      <p class="function">x</p>
+    </div>
+   
+    <div class="item">
+      <img src="bun2.png" alt="Тут задумана булка...">
+      <input type="text" class="answer"
+      data-correct="0">
+      <p class="function">627</p>
+    </div>
+   </div>
+   
+  </div>
+   
+</div>
+
+<!-- ВЫШЕ — ИГРОВОЙ ЭКРАН -->
+
+<div id="Secret" style="display:none;">
+     
+     <h1 class="sectitle">Так-так...</h1>
+     
+     <div class="seccontent">
+         <div class="secleft">
+             <img src="peachsecret.png" alt="Тут должна быть кошечка..." class="peach2">
+         </div>
+         
+         <div class="secright">
+             <p>Кажется Вам стоит сначала вписать ответы.</p>
+         </div>
+     </div>
+   
+      <div class="seccenter">
+             <button onclick="backToStart()" class="secbutton">Вернуться</button>
+      </div> 
+</div>
+
+<!-- ВЫШЕ — СЕКРЕТНЫЙ ЭКРАН -->
+
+<div id="Lose" style="display:none;">
+     
+     <h1 class="lostitle">О нет...</h1>
+     
+     <div class="loscontent">
+         <div class="losleft">
+             <img src="peachlose.png" alt="Тут должна быть кошечка..." class="peach3">
+         </div>
+         
+         <div class="losright">
+             <p>Ответы неверны, начните сначала и внимательно.</p>
+         </div>
+     </div>
+   
+      <div class="loscenter">
+             <button onclick="backToStart()" class="losbutton">Вернуться</button>
+      </div> 
+</div>
+
+<!-- ВЫШЕ — ЭКРАН ПРОИГРЫША -->
+
+<div id="Win" style="display:none;">
+     
+     <h1 class="wintitle">Молодец!</h1>
+     
+     <div class="wincontent">
+         <div class="winleft">
+             <img src="peachwin.png" alt="Тут должна быть кошечка..." class="peach4">
+         </div>
+         
+         <div class="winright">
+             <p>Вы справились со всеми заданиями, так держать!!</p>
+         </div>
+     </div>
+   
+      <div class="wincenter">
+             <button onclick="backToStart()" class="winbutton">Вернуться</button>
+      </div> 
+</div>
+
+<!-- ВЫШЕ — ЭКРАН ВЫИГРЫША -->
+
+<script>
+
+function gameStart () {
+    document.getElementById("Start").style.display = "none";
+    document.getElementById("Game").style.display = "block";
+}
+
+function checkAnswers() {
+    const inputs = document.querySelectorAll(".answer");
+
+    let allEmpty = true;
+    let hasWrong = false;
+
+    inputs.forEach(input => {
+        const userValue = input.value.toLowerCase(); 
+        const correctValue = input.dataset.correct.toLowerCase();
+
+        if (userValue !== "") {
+            allEmpty = false;
+
+            if (userValue !== correctValue) {
+                hasWrong = true;
+            }
+        }
+    });
+
+    if (allEmpty) {
+        document.getElementById("Game").style.display = "none";
+        document.getElementById("Secret").style.display = "block";
+        return;
+    }
+
+    if (hasWrong) {
+        document.getElementById("Game").style.display = "none";
+        document.getElementById("Lose").style.display = "block";
+        return;
+    }
+
+    document.getElementById("Game").style.display = "none";
+    document.getElementById("Win").style.display = "block";
+}
+
+function backToStart() {
+    document.getElementById("Secret").style.display = "none";
+    document.getElementById("Lose").style.display = "none";
+    document.getElementById("Win").style.display = "none";
+    document.getElementById("Start").style.display = "block";
+}
+
+</script>
+
+</body>
+
+</html>
