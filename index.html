@@ -3,7 +3,7 @@
     
 <head>
     <meta charset="UTF-8">
-    <title>Математический квест</title>
+    <title>«Бургер»</title>
     <link rel="stylesheet" href="designnn.css">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -37,7 +37,7 @@
            </p>
             <h2>Удачи Вам!</h2>
         </div>
-    <p class="footer-left">От majezzzz (2026 г.)</p>
+    <p class="footer-left">Majestic, 2026</p>
     <p class="footer-right">Просто эксперимент ;)</p>
     </div> 
      
@@ -181,17 +181,22 @@ function checkAnswers() {
 
     let allEmpty = true;
     let hasWrong = false;
+    let allCorrect = true;
 
     inputs.forEach(input => {
-        const userValue = input.value.toLowerCase(); 
+        const userValue = input.value.trim().toLowerCase();
         const correctValue = input.dataset.correct.toLowerCase();
 
         if (userValue !== "") {
             allEmpty = false;
+        }
 
-            if (userValue !== correctValue) {
-                hasWrong = true;
-            }
+        if (userValue !== correctValue) {
+            allCorrect = false;
+        }
+
+        if (userValue !== "" && userValue !== correctValue) {
+            hasWrong = true;
         }
     });
 
@@ -207,8 +212,14 @@ function checkAnswers() {
         return;
     }
 
+    if (allCorrect) {
+        document.getElementById("Game").style.display = "none";
+        document.getElementById("Win").style.display = "block";
+        return;
+    }
+
     document.getElementById("Game").style.display = "none";
-    document.getElementById("Win").style.display = "block";
+    document.getElementById("Lose").style.display = "block";
 }
 
 function backToStart() {
