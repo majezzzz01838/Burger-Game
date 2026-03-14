@@ -1,5 +1,5 @@
-Мини-игра «Бургер»
+Mini game «Burger»
 
-Данная мини-игра является экспериментом по использованию HTML, JavaScript и CSS. 
-Она создана в развлекательных целях без каких-либо намерений.  
-Изображения, кроме файла rules.png, не принадлежат мне, и я не претендую на авторство этих изображений.  
+This is a mathematical mini game about derivatives and burgers. An experimental and cute website with logic :з
+
+The images except for the rules.png are not mine, and I make no claim to authorship of them.
