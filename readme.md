@@ -4,4 +4,4 @@ This is a small mathematical mini game about derivatives and burger. An experime
 
 The images except for the rules.png are not mine, and I make no claim to authorship of them.
 
-[![Burger-Game](burgerscreenshot.jpg)](https://majezzz01838.github.io/Burger-Game/)
+[![Burger-Game](burgerscreenshot.jpg)](https://majezzzz01838.github.io/Burger-Game/)
